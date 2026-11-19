@@ -690,8 +690,6 @@ $openBtn = New-Btn '图标库' 594 368 82 27 $COL_GRAY {
 
 $aboutLink = New-Btn ('关于 v' + $VER) 570 16 112 28 $COL_GRAY {
     $txt = @(
-        'GlassDesk 双色玻璃桌面主题   v' + $VER,
-        '',
         '把 Windows 桌面统一成「乳白 / 深色磨砂玻璃圆角底板 + 彩色玻璃徽标」风格：',
         '· 快捷方式图标：' + $darkCount + ' 个程序（深浅各一套，共 ' + (Get-ChildItem (Join-Path $PACK 'icons') -Filter *.ico).Count + ' 枚图标）',
         '· 壁纸：深色 ' + $cfg.wallpapers.Count + ' 张 / 浅色 ' + $cfg.wallpapers_light.Count + ' 张（各含 2K 高清版）',
@@ -707,13 +705,71 @@ $aboutLink = New-Btn ('关于 v' + $VER) 570 16 112 28 $COL_GRAY {
         '所有改动集中在快捷方式、HKCU 图标项与 HKLM 的 Shell Icons 三个位置，',
         '「一键还原」可完全回退。适用 Windows 10 / 11。',
         '',
-        '版本 ' + $VER + '　·　打包于 ' + $BUILD_DATE,
-        '',
-        '本程序已开源（MIT License）：',
-        $REPO_URL
+        '版本 ' + $VER + '　·　打包于 ' + $BUILD_DATE
     ) -join "`r`n"
-    $r = [System.Windows.Forms.MessageBox]::Show($txt, '关于 GlassDesk v' + $VER, 'YesNo', 'Information')
-    if ($r -eq 'Yes') { Start-Process $REPO_URL }
+
+    $dlg = New-Object System.Windows.Forms.Form
+    $dlg.Text = '关于 GlassDesk v' + $VER
+    $dlg.ClientSize = New-Object System.Drawing.Size(560, 520)
+    $dlg.StartPosition = 'CenterParent'
+    $dlg.BackColor = $COL_BG
+    $dlg.ForeColor = $COL_TEXT
+    $dlg.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 9)
+    $dlg.FormBorderStyle = 'FixedDialog'
+    $dlg.MaximizeBox = $false
+    $dlg.MinimizeBox = $false
+
+    $h = New-Object System.Windows.Forms.Label
+    $h.Text = 'GlassDesk · 双色玻璃桌面主题'
+    $h.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 14, [System.Drawing.FontStyle]::Bold)
+    $h.ForeColor = $COL_BLUE
+    $h.AutoSize = $true
+    $h.Location = New-Object System.Drawing.Point(20, 16)
+    $dlg.Controls.Add($h)
+
+    $body = New-Object System.Windows.Forms.Label
+    $body.Text = $txt
+    $body.AutoSize = $true
+    $body.MaximumSize = New-Object System.Drawing.Size(512, 0)
+    $body.Location = New-Object System.Drawing.Point(20, 50)
+    $body.ForeColor = $COL_TEXT
+    $dlg.Controls.Add($body)
+    $body.Size = $body.PreferredSize
+    $by = $body.Bottom + 14
+
+    $os = New-Object System.Windows.Forms.Label
+    $os.Text = '本程序已开源（MIT License），欢迎 Star 与提交 Issue：'
+    $os.AutoSize = $true
+    $os.ForeColor = $COL_DIM
+    $os.Location = New-Object System.Drawing.Point(20, $by)
+    $dlg.Controls.Add($os)
+
+    $lnk = New-Object System.Windows.Forms.LinkLabel
+    $lnk.Text = $REPO_URL
+    $lnk.AutoSize = $true
+    $lnk.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 9, [System.Drawing.FontStyle]::Underline)
+    $lnk.LinkColor = $COL_BLUE
+    $lnk.ActiveLinkColor = [System.Drawing.Color]::White
+    $lnk.VisitedLinkColor = $COL_BLUE
+    $lnk.Location = New-Object System.Drawing.Point(22, ($by + 24))
+    $lnk.add_LinkClicked({ param($s, $e) Start-Process $REPO_URL })
+    $dlg.Controls.Add($lnk)
+
+    $ok = New-Object System.Windows.Forms.Button
+    $ok.Text = '关闭'
+    $ok.Size = New-Object System.Drawing.Size(96, 30)
+    $ok.Location = New-Object System.Drawing.Point(444, ($by + 62))
+    $dlg.ClientSize = New-Object System.Drawing.Size(560, ($by + 112))
+    $ok.FlatStyle = 'Flat'
+    $ok.BackColor = $COL_GRAY
+    $ok.ForeColor = $COL_TEXT
+    $ok.FlatAppearance.BorderSize = 0
+    $ok.Add_Click({ $dlg.Close() })
+    $dlg.Controls.Add($ok)
+    $dlg.AcceptButton = $ok
+    $dlg.CancelButton = $ok
+
+    [void]$dlg.ShowDialog($form)
 }
 
 $logTitle = New-Object System.Windows.Forms.Label
@@ -723,6 +779,16 @@ $logTitle.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 9, [System
 $logTitle.Location = New-Object System.Drawing.Point(24, 400)
 $logTitle.Size = New-Object System.Drawing.Size(120, 20)
 $form.Controls.Add($logTitle)
+
+$repoLnk = New-Object System.Windows.Forms.LinkLabel
+$repoLnk.Text = '开源仓库 · GitHub'
+$repoLnk.AutoSize = $true
+$repoLnk.LinkColor = $COL_BLUE
+$repoLnk.ActiveLinkColor = [System.Drawing.Color]::White
+$repoLnk.VisitedLinkColor = $COL_BLUE
+$repoLnk.Location = New-Object System.Drawing.Point(466, 373)
+$repoLnk.add_LinkClicked({ param($s, $e) Start-Process $REPO_URL })
+$form.Controls.Add($repoLnk)
 
 Show-Preview $cfg.default_wallpaper
 Log ('图标库：' + $PACK)
