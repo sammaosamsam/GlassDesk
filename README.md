@@ -64,7 +64,14 @@ git clone https://github.com/sammaosamsam/GlassDesk.git
 
 ### 方式一：直接用（推荐）
 
-从 [Releases](../../releases) 下载 `GlassDesk.exe`，放到任意目录双击运行：
+直接下载：
+
+- [**GlassDesk.exe**](https://github.com/sammaosamsam/GlassDesk/releases/latest/download/GlassDesk.exe) — 单文件绿色版（约 176 MB）
+- [**GlassDesk-2K-Wallpapers.zip**](https://github.com/sammaosamsam/GlassDesk/releases/latest/download/GlassDesk-2K-Wallpapers.zip) — 深色 10 张 + 浅色 11 张 2560×1440 壁纸（约 70 MB）
+
+也可以到 [Releases](../../releases) 页面查看。
+
+双击 `GlassDesk.exe` 运行：
 
 1. **一键安装** — 图标 + 系统图标 + 文件夹图标 + 去小箭头 + 壁纸 + 重建缓存（需一次管理员授权）
 2. **深色风格 / 浅色风格** — 只切图标 + 系统图标 + 文件夹图标 + 壁纸，立即生效
