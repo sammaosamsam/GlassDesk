@@ -780,15 +780,6 @@ $logTitle.Location = New-Object System.Drawing.Point(24, 400)
 $logTitle.Size = New-Object System.Drawing.Size(120, 20)
 $form.Controls.Add($logTitle)
 
-$repoLnk = New-Object System.Windows.Forms.LinkLabel
-$repoLnk.Text = '开源仓库 · GitHub'
-$repoLnk.AutoSize = $true
-$repoLnk.LinkColor = $COL_BLUE
-$repoLnk.ActiveLinkColor = [System.Drawing.Color]::White
-$repoLnk.VisitedLinkColor = $COL_BLUE
-$repoLnk.Location = New-Object System.Drawing.Point(466, 373)
-$repoLnk.add_LinkClicked({ param($s, $e) Start-Process $REPO_URL })
-$form.Controls.Add($repoLnk)
 
 Show-Preview $cfg.default_wallpaper
 Log ('图标库：' + $PACK)
