@@ -3,8 +3,15 @@
 > 为 Windows 10 / 11 桌面打造的「磨砂玻璃圆角底板 + 彩色玻璃徽标」图标主题，深色、浅色两套一键切换，单文件程序即装即用。
 
 ![platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0aa?style=flat-square)
-![version](https://img.shields.io/badge/version-1.5.4-4c8dff?style=flat-square)
+![version](https://img.shields.io/badge/version-1.6.0-4c8dff?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-success?style=flat-square)
+![repo](https://img.shields.io/badge/repo-sammaosamsam%2FGlassDesk-24292f?style=flat-square&logo=github)
+
+仓库：<https://github.com/sammaosamsam/GlassDesk>
+
+```powershell
+git clone https://github.com/sammaosamsam/GlassDesk.git
+```
 
 ---
 

@@ -3,8 +3,9 @@
 $ErrorActionPreference = 'SilentlyContinue'
 $ConfirmPreference = 'None'
 $ProgressPreference = 'SilentlyContinue'
-$VER = '1.5.4'
+$VER = '1.6.0'
 $BUILD_DATE = '2026-11-19'
+$REPO_URL = 'https://github.com/sammaosamsam/GlassDesk'
 $PACK = $PSScriptRoot
 $cfg  = Get-Content (Join-Path $PACK 'install_config.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $ADMIN_PS = Join-Path $env:TEMP 'GlassDesk_admin.ps1'
@@ -385,7 +386,7 @@ $title.Size = New-Object System.Drawing.Size(160, 38)
 $form.Controls.Add($title)
 
 $sub = New-Object System.Windows.Forms.Label
-$sub.Text = ('v' + $VER + ' · 深色 / 浅色双主题 · 一键安装 / 切换 / 还原')
+$sub.Text = ('v' + $VER + ' · 深色 / 浅色双主题 · 一键安装 / 切换 / 还原 · 开源 MIT')
 $sub.ForeColor = $COL_DIM
 $sub.Location = New-Object System.Drawing.Point(176, 28)
 $sub.Size = New-Object System.Drawing.Size(370, 24)
@@ -706,9 +707,13 @@ $aboutLink = New-Btn ('关于 v' + $VER) 570 16 112 28 $COL_GRAY {
         '所有改动集中在快捷方式、HKCU 图标项与 HKLM 的 Shell Icons 三个位置，',
         '「一键还原」可完全回退。适用 Windows 10 / 11。',
         '',
-        '版本 ' + $VER + '　·　打包于 ' + $BUILD_DATE
+        '版本 ' + $VER + '　·　打包于 ' + $BUILD_DATE,
+        '',
+        '本程序已开源（MIT License）：',
+        $REPO_URL
     ) -join "`r`n"
-    [System.Windows.Forms.MessageBox]::Show($txt, '关于 GlassDesk v' + $VER, 'OK', 'Information') | Out-Null
+    $r = [System.Windows.Forms.MessageBox]::Show($txt, '关于 GlassDesk v' + $VER, 'YesNo', 'Information')
+    if ($r -eq 'Yes') { Start-Process $REPO_URL }
 }
 
 $logTitle = New-Object System.Windows.Forms.Label
