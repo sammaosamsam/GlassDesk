@@ -312,7 +312,9 @@
     "360se.exe": "360chrome.ico",
     "短接图查看.exe": "duanjie.ico",
     "中飞刷机助手.exe": "zhongfei.ico",
-    "control.exe": "sys_cpl.ico"
+    "control.exe": "sys_cpl.ico",
+    "短剧播放器.exe": "duanju.ico",
+    "deepseek harness.exe": "deepseek.ico"
   },
   "folder_icon": "folder.ico",
   "system_icons": {
@@ -648,7 +650,9 @@
     "360se.exe": "l_360chrome.ico",
     "短接图查看.exe": "l_duanjie.ico",
     "中飞刷机助手.exe": "l_zhongfei.ico",
-    "control.exe": "l_sys_cpl.ico"
+    "control.exe": "l_sys_cpl.ico",
+    "短剧播放器.exe": "l_duanju.ico",
+    "deepseek harness.exe": "l_deepseek.ico"
   },
   "folder_icon_light": "l_folder.ico",
   "system_icons_light": {
